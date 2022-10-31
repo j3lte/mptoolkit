@@ -20,7 +20,7 @@ type BigSearchOptionalParams = {
   gender?: "M" | "V" | "O";
   // houseNumber?: string;
   // postalcode?: string;
-  // city?: string;
+  city?: string;
   dateOfBirth?: string;
   /**
    * Exacte vergelijking op de code beroepsgroep van de
@@ -116,9 +116,42 @@ export type SOAPReturnType = GenericSoapReturn<{
   };
 }>;
 
+export type SpecialismItem = {
+  "Code": number;
+  "Description": string;
+  "DescriptionEn"?: string | null;
+  "TitleOfSpecialist": string;
+  "TitleOfSpecialistEn"?: string | null;
+  "Register": string;
+  "EndDate": {
+    "@xsi:nil": boolean;
+    "#text": null | string;
+  } | string;
+  "ProfessionalGroupCode": number;
+};
+
+export type ProfessionalGroupItem = {
+  "Code": number;
+  "Description": string;
+  "DescriptionEnglish": string;
+  "Title": string;
+  "Article3": boolean;
+  "Article34": boolean;
+  "BusinessOwner": number;
+  "RequiredHoursForReregistration": number;
+};
+export type ReferenceData = {
+  ProfessionalGroups: {
+    ProfessionalGroup: Array<ProfessionalGroupItem>;
+  };
+  TypeOfSpecialisms: {
+    TypeOfSpecialism: Array<SpecialismItem>;
+  };
+};
+
 export type SOAPReferenceReturnType = GenericSoapReturn<{
   GetRibizReferenceDataResponse: {
     "@xmlns": "http://services.cibg.nl/ExternalUser";
-    GetRibizReferenceDataResult: unknown;
+    GetRibizReferenceDataResult: ReferenceData;
   };
 }>;
