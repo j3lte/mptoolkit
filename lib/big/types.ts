@@ -74,6 +74,12 @@ export type ArticleRegistration = {
   ProfessionalGroupCode: number;
 };
 
+export type Specialism = {
+  SpecialismId: number;
+  ArticleRegistrationNumber: number;
+  TypeOfSpecialismId: number;
+};
+
 export type SoapReturnItem = {
   /**
    * Geboortenaam van de zorgverlener
@@ -94,7 +100,9 @@ export type SoapReturnItem = {
   ArticleRegistration: {
     ArticleRegistrationExtApp: ArticleRegistration | ArticleRegistration[];
   };
-  Specialism: unknown;
+  Specialism: {
+    SpecialistmExtApp1: Specialism | Specialism[];
+  } | null;
   Mention: unknown;
   JudgementProvision: unknown;
   Limitation: unknown;
